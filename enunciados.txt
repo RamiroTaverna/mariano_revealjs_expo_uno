@@ -1,0 +1,5 @@
+4. Un orfebre fabrica dos tipos de joyas. Las del tipo A precisan 1 gr de oro y 1,5 gr de plata, vendiéndose a 40 euros cada una. Para la fabricación de las de tipo B emplea 1,5 gr de oro y 1 gr de plata, y las vende a 50 euros. El orfebre tiene solo en el taller 750 gr de cada uno de los metales. 
+¿Cuántas joyas ha de fabricar de cada clase para obtener un beneficio máximo?
+
+7. Una empresa debe cubrir 120 horas semanales con trabajadores tipo A, B y C. El trabajador A cobra $20/hora y puede trabajar hasta 40 horas. El B cobra $18/hora y puede trabajar hasta 50 horas. El C cobra $15/hora y puede trabajar hasta 60 horas.
+¿Cuántas horas debe trabajar cada empleado para cubrir las 120 horas al menor costo posible?
