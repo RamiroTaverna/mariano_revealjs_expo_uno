@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
 
   <style>
-    .reveal h1, .reveal h2, .reveal h3, .reveal p, .reveal li, .reveal code, .reveal pre {
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-    }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h6, .reveal p, .reveal li, .reveal code, .reveal pre {
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+      }
 
     .reveal table, .reveal th, .reveal td {
       background-color: rgba(0, 0, 0, 0.5);
@@ -25,141 +25,156 @@
 </head>
 <body>
   <div class="reveal">
-    <div class="slides">
+      <div class="slides">
+
+          <!-- PRESENTACION -->
+          <section data-background-image="./img/introduccion/intro.png" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h1>Grupo 1</h1><br>
+              <h2>Integrantes:</h2>
+              <h3>Ramiro Taverna</h3>
+              <h3>Thiago Lozano</h3>
+          </section>
+
+          <!-- INTRODUCCIÓN -->
+          <section data-background-image="./img/introduccion/intro.webp" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h2>¿Qué vamos a presentar?</h2>
+              <p style="font-size: 0.9em; max-width: 90%; margin: auto;">
+                  Expondremos dos problemáticas:<br><br>
+                  • Un caso de <strong>maximización de beneficios</strong> en la fabricación de joyas, buscando un equilibrio entre la cantidad de metales disponibles y la cantidad de joyas fabricadas.<br><br>
+                  • Un caso de <strong>minimización</strong>, donde administramos las horas laborales de los empleados según sus sueldos y disponibilidad horaria.
+              </p>
+          </section>
 
 
-      <!--PROBLEMA 1 (ENUNCIADO 4 - EL ORFEBRE)-->
 
+          <!--PROBLEMA 1 (ENUNCIADO 4 - EL ORFEBRE)-->
+          <!-- Portada -->
+          <section data-background-image="./img/joyas/joya0.jpeg" style="opacity: 80%;" data-background-size="cover" data-background-position="center">
+              <h2>ENUNCIADO 4 - Optimización de producción</h2>
+              <h3>Problema del orfebre</h3>
+          </section>
 
-      <!-- Portada -->
-      <section data-background-image="./img/joyas/joya0.jpeg" style="opacity: 80%;" data-background-size="cover" data-background-position="center">
-        <h1>ENUNCIADO 4 - Optimización de producción</h1>
-        <h3>Problema del orfebre</h3>
-      </section>
+          <!-- Enunciado -->
+          <section data-background-image="./img/joyas/joya1.jpg" data-background-size="cover" data-background-opacity="0.2">
+              <h2>¿Cuál es el problema?</h2>
+              <p>Un orfebre fabrica dos tipos de joyas:</p>
+              <ul>
+                  <li>Tipo A: usa <b>1g de oro</b> y <b>1.5g de plata</b>, se vende a <b>40€</b>.</li>
+                  <li>Tipo B: usa <b>1.5g de oro</b> y <b>1g de plata</b>, se vende a <b>50€</b>.</li>
+              </ul>
+              <p>Tiene disponibles 750g de oro y 750g de plata. ¿Cuántas joyas de cada tipo debe fabricar para ganar lo máximo posible?</p>
+          </section>
 
-      <!-- Enunciado -->
-      <section data-background-image="./img/joyas/joya1.jpg" data-background-size="cover" data-background-opacity="0.2">
-        <h2>¿Cuál es el problema?</h2>
-        <p>Un orfebre fabrica dos tipos de joyas:</p>
-        <ul>
-          <li>Tipo A: usa <b>1g de oro</b> y <b>1.5g de plata</b>, se vende a <b>40€</b>.</li>
-          <li>Tipo B: usa <b>1.5g de oro</b> y <b>1g de plata</b>, se vende a <b>50€</b>.</li>
-        </ul>
-        <p>Tiene disponibles 750g de oro y 750g de plata. ¿Cuántas joyas de cada tipo debe fabricar para ganar lo máximo posible?</p>
-      </section>
+          <!-- Introducción a PuLP -->
+          <section data-background-image="./img/joyas/joya2.webp" data-background-size="cover" data-background-opacity="0.2">
+              <h2>¿Qué es PuLP?</h2>
+              <p><b>PuLP</b> es una librería de Python para resolver problemas de optimización lineal.</p>
+              <p>En este caso, utilizamos PuLP para encontrar cuántas joyas de cada tipo debe fabricar el orfebre para maximizar el beneficio, respetando los límites de oro y plata disponibles.</p>
+          </section>
 
-      <!-- Introducción a PuLP -->
-      <section data-background-image="./img/joyas/joya2.webp" data-background-size="cover" data-background-opacity="0.2">
-        <h2>¿Qué es PuLP?</h2>
-        <p><b>PuLP</b> es una librería de Python para resolver problemas de optimización lineal.</p>
-        <p>En este caso, utilizamos PuLP para encontrar cuántas joyas de cada tipo debe fabricar el orfebre para maximizar el beneficio, respetando los límites de oro y plata disponibles.</p>
-      </section>
-
-      <!-- Código paso a paso -->
-      <section data-background-image="./img/joyas/joya3.webp" data-background-size="cover" data-background-opacity="0.2">
-        <h2>1. Importamos las herramientas</h2>
-        <pre><code class="language-python">
+          <!-- Código paso a paso -->
+          <section data-background-image="./img/joyas/joya3.webp" data-background-size="cover" data-background-opacity="0.2">
+              <h2>1. Importamos las herramientas</h2>
+              <pre><code class="language-python">
 from pulp import LpMaximize, LpProblem, LpVariable, value
         </code></pre>
-        <p>Importamos las funciones necesarias para crear el modelo, definir variables y resolverlo.</p>
-      </section>
+              <p>Importamos las funciones necesarias para crear el modelo, definir variables y resolverlo.</p>
+          </section>
 
-      <section data-background-image="./img/joyas/joya0.jpeg" data-background-size="cover" data-background-opacity="0.2">
-        <h2>2. Creamos el modelo</h2>
-        <pre><code class="language-python">
+          <section data-background-image="./img/joyas/joya0.jpeg" data-background-size="cover" data-background-opacity="0.2">
+              <h2>2. Creamos el modelo</h2>
+              <pre><code class="language-python">
 modelo = LpProblem("joyas-beneficio-maximo", LpMaximize)
         </code></pre>
-        <p>El modelo representa el problema. Le damos un nombre y aclaramos que queremos <b>maximizar</b> el beneficio.</p>
-      </section>
+              <p>El modelo representa el problema. Le damos un nombre y aclaramos que queremos <b>maximizar</b> el beneficio.</p>
+          </section>
 
-      <section data-background-image="./img/joyas/joya1.jpg" data-background-size="cover" data-background-opacity="0.2">
-        <h2>3. Definimos las variables</h2>
-        <pre><code class="language-python">
+          <section data-background-image="./img/joyas/joya1.jpg" data-background-size="cover" data-background-opacity="0.2">
+              <h2>3. Definimos las variables</h2>
+              <pre><code class="language-python">
 x = LpVariable("joyas_tipo_A", lowBound=0, cat='Integer')
 y = LpVariable("joyas_tipo_B", lowBound=0, cat='Integer')
         </code></pre>
-        <p>Las variables <code>x</code> e <code>y</code> representan la cantidad de joyas tipo A y B a fabricar. Deben ser enteras y no negativas.</p>
-      </section>
+              <p>Las variables <code>x</code> e <code>y</code> representan la cantidad de joyas tipo A y B a fabricar. Deben ser enteras y no negativas.</p>
+          </section>
 
-      <section data-background-image="./img/joyas/joya3.webp" data-background-size="cover" data-background-opacity="0.2">
-        <h2>4. Función objetivo</h2>
-        <pre><code class="language-python">
+          <section data-background-image="./img/joyas/joya3.webp" data-background-size="cover" data-background-opacity="0.2">
+              <h2>4. Función objetivo</h2>
+              <pre><code class="language-python">
 modelo += 40 * x + 50 * y, "Beneficio_total"
         </code></pre>
-        <p>Queremos maximizar el beneficio: 40 € por cada A y 50 € por cada B.</p>
-      </section>
+              <p>Queremos maximizar el beneficio: 40 € por cada A y 50 € por cada B.</p>
+          </section>
 
-      <section data-background-image="./img/joyas/joya1.jpg" data-background-size="cover" data-background-opacity="0.2">
-        <h2>5. Restricciones de recursos</h2>
-        <pre><code class="language-python">
+          <section data-background-image="./img/joyas/joya1.jpg" data-background-size="cover" data-background-opacity="0.2">
+              <h2>5. Restricciones de recursos</h2>
+              <pre><code class="language-python">
 modelo += x + 1.5 * y <= 750
 modelo += 1.5 * x + y <= 750
         </code></pre>
-        <p>No podemos usar más de lo que tenemos: 750g de oro y 750g de plata.</p>
-      </section>
+              <p>No podemos usar más de lo que tenemos: 750g de oro y 750g de plata.</p>
+          </section>
 
-      <section data-background-image="./img/joyas/joya2.webp" data-background-size="cover" data-background-opacity="0.2">
-        <h2>6. Resolución del modelo</h2>
-        <pre><code class="language-python">
+          <section data-background-image="./img/joyas/joya2.webp" data-background-size="cover" data-background-opacity="0.2">
+              <h2>6. Resolución del modelo</h2>
+              <pre><code class="language-python">
 modelo.solve()
         </code></pre>
-        <p>El modelo se resuelve automáticamente con CBC, el solver por defecto. Busca la mejor combinación de <code>x</code> e <code>y</code>.</p>
-      </section>
+              <p>El modelo se resuelve automáticamente con CBC, el solver por defecto. Busca la mejor combinación de <code>x</code> e <code>y</code>.</p>
+          </section>
 
-      <section data-background-image="./img/joyas/joya3.webp" data-background-size="cover" data-background-opacity="0.2">
-        <h2>7. Resultados</h2>
-        <pre><code class="language-python">
+          <section data-background-image="./img/joyas/joya3.webp" data-background-size="cover" data-background-opacity="0.2">
+              <h2>7. Resultados</h2>
+              <pre><code class="language-python">
 print(x.value())
 print(y.value())
 print(value(modelo.objective))
         </code></pre>
-        <p>Obtenemos la solución óptima: qué fabricar y cuánto se gana.</p>
-      </section>
+              <p>Obtenemos la solución óptima: qué fabricar y cuánto se gana.</p>
+          </section>
 
-      <!-- Resultado final con gráfico -->
-      <section data-background-image="./img/joyas/joya2.webp" data-background-size="cover" data-background-opacity="0.2">
-        <h2>Resultado óptimo</h2>
-        <img src="./img/joyas/grafico_problema_4.png" alt="Gráfico del problema de optimización" style="max-width: 100%; height: auto; margin-bottom: 1em;">
-        <ul>
-          <li><b>Joyas tipo A</b>: 300 unidades</li>
-          <li><b>Joyas tipo B</b>: 300 unidades</li>
-          <li><b>Beneficio máximo</b>: 27.000€</li>
-        </ul>
-        <p>Así aprovechamos al máximo el oro y la plata disponibles.</p>
-      </section>
+          <!-- Resultado final con gráfico -->
+          <section data-background-image="./img/joyas/joya2.webp" data-background-size="cover" data-background-opacity="0.2">
+              <h2>Resultado óptimo</h2>
+              <img src="./img/joyas/grafico_problema_4.png" alt="Gráfico del problema de optimización" style="max-width: 100%; height: auto; margin-bottom: 1em;">
+              <ul>
+                  <li><b>Joyas tipo A</b>: 300 unidades</li>
+                  <li><b>Joyas tipo B</b>: 300 unidades</li>
+                  <li><b>Beneficio máximo</b>: 27.000€</li>
+              </ul>
+              <p>Así aprovechamos al máximo el oro y la plata disponibles.</p>
+          </section>
 
 
-        <!--PROBLEMA 2 (ENUNCIADO 7 - HORAS DE TRABAJO)-->
+          <!--PROBLEMA 2 (ENUNCIADO 7 - HORAS DE TRABAJO)-->
+          <!-- Portada -->
+          <section data-background-image="./img/trabajadores/trabajadores3.png" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h2>Enunciado 7 - Optimización de sueldos</h2>
+              <h3>Problema de optimización de horas de trabajo</h3>
+          </section>
 
-        
-      <!-- Portada -->
-      <section data-background-image="./img/trabajadores/trabajadores3.png" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
-        <h1>Enunciado 7 - Optimización de sueldos</h1>
-        <h3>Problema de optimización de horas de trabajo</h3>
-      </section>
+          <section data-background-image="./img/trabajadores/trabajadores2.jpg" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h2>¿Cuál es el problema?</h2>
+              <p>Queremos cubrir <strong>120 horas semanales</strong> al <strong>menor costo posible</strong>, dividiendo las horas entre tres trabajadores.</p>
+          </section>
 
-      <section data-background-image="./img/trabajadores/trabajadores2.jpg" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
-        <h2>¿Cuál es el problema?</h2>
-        <p>Queremos cubrir <strong>120 horas semanales</strong> al <strong>menor costo posible</strong>, dividiendo las horas entre tres trabajadores.</p>
-      </section>
+          <section data-background-image="./img/trabajadores/trabajadores1.webp" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h3>Información de los trabajadores</h3>
+              <table>
+                  <thead>
+                      <tr><th>Trabajador</th><th>Costo/hora</th><th>Máx. horas</th></tr>
+                  </thead>
+                  <tbody>
+                      <tr><td>A</td><td>$20</td><td>40</td></tr>
+                      <tr><td>B</td><td>$18</td><td>50</td></tr>
+                      <tr><td>C</td><td>$15</td><td>60</td></tr>
+                  </tbody>
+              </table>
+          </section>
 
-      <section data-background-image="./img/trabajadores/trabajadores1.webp" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
-        <h3>Información de los trabajadores</h3>
-        <table>
-          <thead>
-            <tr><th>Trabajador</th><th>Costo/hora</th><th>Máx. horas</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>A</td><td>$20</td><td>40</td></tr>
-            <tr><td>B</td><td>$18</td><td>50</td></tr>
-            <tr><td>C</td><td>$15</td><td>60</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section>
-        <h3>Modelo en PuLP</h3>
-        <pre><code class="language-python">
+          <section data-background-image="./img/trabajadores/trabajadores3.png" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h3>Modelo en PuLP</h3>
+              <pre><code class="language-python">
 from pulp import LpProblem, LpMinimize, LpVariable, value
 
 modelo = LpProblem("minimizar_costos_trabajadores", LpMinimize)
@@ -170,35 +185,40 @@ modelo += 20 * a + 18 * b + 15 * c
 modelo += a + b + c == 120
 modelo.solve()
         </code></pre>
-      </section>
+          </section>
 
-      <section data-background-image="./img/trabajadores/trabajadores2.jpg" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
-        <h3>Explicación del modelo</h3>
-        <ul>
-          <li><strong>Objetivo:</strong> minimizar <code>20·a + 18·b + 15·c</code></li>
-          <li><strong>Restricción:</strong> <code>a + b + c = 120</code></li>
-          <li><strong>Límites:</strong> <code>a ≤ 40</code>, <code>b ≤ 50</code>, <code>c ≤ 60</code></li>
-        </ul>
-      </section>
+          <section data-background-image="./img/trabajadores/trabajadores2.jpg" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h3>Explicación del modelo</h3>
+              <ul>
+                  <li><strong>Objetivo:</strong> minimizar <code>20·a + 18·b + 15·c</code></li>
+                  <li><strong>Restricción:</strong> <code>a + b + c = 120</code></li>
+                  <li><strong>Límites:</strong> <code>a ≤ 40</code>, <code>b ≤ 50</code>, <code>c ≤ 60</code></li>
+              </ul>
+          </section>
 
-      <section>
-        <h3>Resultados del Solver</h3>
-        <pre><code class="language-python">
-Horas trabajadas por A: 10.0
-Horas trabajadas por B: 50.0
-Horas trabajadas por C: 60.0
-Costo mínimo total: $2000.0
+          <section data-background-image="./img/trabajadores/trabajadores1.webp" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h3>Resultados del Solver</h3>
+              <pre><code class="language-python">
+                Horas trabajadas por A: 10.0
+                Horas trabajadas por B: 50.0
+                Horas trabajadas por C: 60.0
+                Costo mínimo total: $2000.0
         </code></pre>
-      </section>
+          </section>
 
-      <!-- Resultado final con gráfico -->
-      <section data-background-image="./img/trabajadores/trabajadores1.webp" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
-        <h2>Resultado óptimo</h2>
-        <img src="./img/trabajadores/grafico_problema_7.png" alt="Gráfico del problema de optimización" style="max-width: 100%; height: auto; margin-bottom: 1em;">
-      </section>
+          <!-- Resultado final con gráfico -->
+          <section data-background-image="./img/trabajadores/trabajadores2.jpg" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h2>Resultado óptimo</h2>
+              <img src="./img/trabajadores/grafico_problema_7.png" alt="Gráfico del problema de optimización" style="max-width: 100%; height: auto; margin-bottom: 1em;">
+          </section>
+
+          <!--FINAL-->
+          <section data-background-image="./img/introduccion/outro.avif" style="opacity: 100%;" data-background-size="cover" data-background-position="center">
+              <h1>¡Gracias por ver!</h1>
+          </section>
 
 
-    </div>
+      </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
